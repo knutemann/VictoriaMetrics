@@ -114,7 +114,7 @@ func (tsm *targetStatusMap) WriteHumanReadable(w io.Writer) {
 			lastScrape := st.getDurationFromLastScrape()
 			errMsg := ""
 			if st.err != nil {
-				errMsg = st.err.Error()
+        errMsg = st.err.Error()[0:128]
 			}
 			fmt.Fprintf(w, "\tstate=%s, endpoint=%s, labels=%s, last_scrape=%.3fs ago, scrape_duration=%.3fs, error=%q\n",
 				state, st.sw.ScrapeURL, labelsStr, lastScrape.Seconds(), float64(st.scrapeDuration)/1000, errMsg)
